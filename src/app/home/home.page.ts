@@ -1,0 +1,45 @@
+import { Component } from '@angular/core';
+import { AnyARecord } from 'dns';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+
+  num: any;
+  mayorMenor = '...';
+  numSecret: number = this.numAleatorio(0,10);
+ 
+  constructor() {}
+
+  numAleatorio(a : any, b: any) {
+    return Math.round(Math.random() * (b - a) + parseInt(a, 10));
+  }
+
+  compruebaNumero(){
+    if(this.num)
+    {
+      if(this.numSecret < this.num)
+      {
+        this.mayorMenor = 'menor que';
+      }
+      else if(this.numSecret > this.num)
+      {
+        this.mayorMenor = 'mayor que';
+      }
+      else{
+        this.mayorMenor = '';
+      }
+    }
+  }
+
+  reinicia(){
+    // reiniciamos las variables
+    this.num = null;
+    this.mayorMenor = '...';
+    this.numSecret = this.numAleatorio(0,10);
+  }
+  
+}
